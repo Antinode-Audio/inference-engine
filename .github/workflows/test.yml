@@ -10,7 +10,7 @@ on:
       - main
 
 env:
-  RUST_TOOLCHAIN: 1.68
+  RUST_TOOLCHAIN: "1.91"
   CMAKE_VERSION: 3.24
   PYTHON_VERSION: 3.8
 
