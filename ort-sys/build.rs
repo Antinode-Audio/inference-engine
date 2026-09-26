@@ -77,6 +77,13 @@ fn build_cpp() {
         println!("cargo:rustc-link-lib=framework=Foundation");
     }
 
+    // onnxruntime 의 ETW 텔레메트리(EventRegister 등)가 advapi32 에 있다.
+    // Rust 1.78 부터 std 가 advapi32 를 링크하지 않아 명시해야 한다.
+    #[cfg(target_os = "windows")]
+    {
+        println!("cargo:rustc-link-lib=advapi32");
+    }
+
     println!("cargo:rerun-if-env-changed=INFERENCE_ENGINE_ORT_ONNXRUNTIME_DIR");
     println!("cargo:rerun-if-env-changed=INFERENCE_ENGINE_ORT_ONNXRUNTIME_VERSION");
 
